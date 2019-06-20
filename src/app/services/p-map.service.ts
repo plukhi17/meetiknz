@@ -11,10 +11,11 @@ export class PMapService {
   private baseUrl="http://localhost:8080/venue/venues";
   private venueSource= new Subject();
   private searchSource= new Subject();
+  private radSource= new Subject();
   venueList=new Observable<any>();
   
   selectedVenue= this.venueSource.asObservable();
-  
+  radiusValue= this.radSource.asObservable();
   searchList= this.searchSource.asObservable();
 
  
@@ -34,6 +35,9 @@ export class PMapService {
     this.searchSource.next(searchedVenue);
   }
    
+  public changeRad(radius: number){
+    this.radSource.next(radius);
+  }
 
 
 }

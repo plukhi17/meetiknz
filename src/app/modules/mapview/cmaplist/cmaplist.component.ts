@@ -14,6 +14,8 @@ export class CmaplistComponent implements OnInit {
   private venueList:any;
   private searchedList:any;
   public filterKey: string;
+  public searchRadBox:number;
+  
   constructor(private mapService: PMapService,private render: Renderer) { }
 
   ngOnInit() {
@@ -41,7 +43,11 @@ export class CmaplistComponent implements OnInit {
       this.searchedList= this.venueList.filter((venue)=> venue.name.toLowerCase().indexOf(value)!==-1);
       console.log(this.searchedList);
       this.mapService.changeSearch(this.searchedList);
-      
+    }
+
+  onRadiusChange(value){
+    value=value*1000;
+    this.mapService.changeRad(value);
   }
   ngOnDestroy(){
     this.selectedVenue=null;

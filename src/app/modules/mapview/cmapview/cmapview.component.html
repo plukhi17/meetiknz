@@ -23,6 +23,12 @@
       [longitude]="m.longi">{{m.name}}</agm-info-window>
     
   </agm-marker>
+
+  <agm-circle [latitude]="lonLat" [longitude]="lonLog" 
+      [radius]="radiusFilter"
+      [fillColor]="'red'"
+      >
+    </agm-circle>
   </agm-map>
 
 </p>

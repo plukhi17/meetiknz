@@ -15,6 +15,7 @@ export class CmapviewComponent implements OnInit {
   private lonLat:number = 51.5194126;
   private lonLog:number = -0.10627840000006472;
   private selectedVenue: Marker;
+  private radiusFilter: number;
   private venueSubScribe: Subscription;
   private venueListSubScribe: Subscription;
   private searchSubScribe: Subscription;
@@ -28,12 +29,16 @@ export class CmapviewComponent implements OnInit {
         });
 
         this.searchSubScribe=this.mpService.searchList.subscribe((mapJson)=>{
-            //this.myMarker=<Marker[]><unknown>mapJson;
-            //this.myMarker=<Marker[]><unknown>mapJson;
+           
             this.myMarker=<Marker[]>mapJson;
 
        });
 
+       this.searchSubScribe=this.mpService.radiusValue.subscribe((radVal)=>{
+           this.radiusFilter=<number>radVal;
+
+   });
+       
         
     this.venueSubScribe=this.mpService.selectedVenue.subscribe((selectedVenue)=>{
       if(selectedVenue){
