@@ -1,11 +1,8 @@
 
-
-
-
-
+<input type="text" id="searchBox" class="searchBox" [(ngModel)]="fitlerKey" (keyup)='onkeypress($event.target.value)' placeholder="Search">
 <div class="venue-list">
     <ul>
-            <li [ngClass]="{'highlight': selectedVenue == m}" *ngFor="let m of venueList; let i = index" class="venue-text" (click)="markMe(m)"> 
+            <li [ngClass]="{'highlight': selectedVenue == m}" *ngFor="let m of searchedList; let i = index" class="venue-text" (click)="markMe(m)"> 
                 {{m.name}}
             </li>
     </ul>

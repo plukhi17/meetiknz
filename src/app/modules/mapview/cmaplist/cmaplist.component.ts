@@ -12,12 +12,14 @@ export class CmaplistComponent implements OnInit {
   private venueListSubScribe: Subscription;
   private selectedVenue:any;
   private venueList:any;
- 
+  private searchedList:any;
+  public filterKey: string;
   constructor(private mapService: PMapService,private render: Renderer) { }
 
   ngOnInit() {
     this.venueListSubScribe=this.mapService.venueList.subscribe(list => {
       this.venueList=list;
+      this.searchedList=list;
     })
     this.mapService.selectedVenue.subscribe(venue => {
       this.selectedVenue=venue;
@@ -30,7 +32,16 @@ export class CmaplistComponent implements OnInit {
     
      // this.render.setElementClass(event.target, "highlight", true);
      this.selectedVenue = selectedVenue;
-    this.mapService.changeVenue(selectedVenue);
+     this.mapService.changeVenue(selectedVenue);
+  }
+
+
+    onkeypress(value) {
+      value=value.toLowerCase();
+      this.searchedList= this.venueList.filter((venue)=> venue.name.toLowerCase().indexOf(value)!==-1);
+      console.log(this.searchedList);
+      this.mapService.changeSearch(this.searchedList);
+      
   }
   ngOnDestroy(){
     this.selectedVenue=null;

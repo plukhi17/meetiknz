@@ -5,16 +5,19 @@
     </h3>
   
     <div>
-      <img [src]="selectedVenue?.url" width="300" class="meeting-img">
+        <div>
+            <img [src]="selectedVenue?.url" width="300" class="meeting-img">
+        </div>
+      <div class="info-row">
+          <label class="lable-text">Max Participants</label> {{selectedVenue?.maxParticipants}}
+       </div>
+       <div class="info-row">
+        <label class="lable-text">City</label> {{selectedVenue?.city}}
+       </div>
+       <div class="info-row">
+            <label class="lable-text">Country</label>{{selectedVenue?.countryFullName}}
+        </div>
     </div>
-    <div class="info-row">
-        <label class="lable-text">Max Participants</label> {{selectedVenue?.maxParticipants}}
-     </div>
-     <div class="info-row">
-      <label class="lable-text">City</label> {{selectedVenue?.city}}
-     </div>
-     <div class="info-row">
-          <label class="lable-text">Country</label>{{selectedVenue?.countryFullName}}
-      </div>
+    
      
   </div>

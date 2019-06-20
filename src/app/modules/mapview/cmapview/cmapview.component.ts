@@ -17,6 +17,7 @@ export class CmapviewComponent implements OnInit {
   private selectedVenue: any;
   private venueSubScribe: Subscription;
   private venueListSubScribe: Subscription;
+  private searchSubScribe: Subscription;
   openedWindow : number = 0; 
   constructor(private  mpService: PMapService) { }
 
@@ -25,6 +26,12 @@ export class CmapviewComponent implements OnInit {
         this.myMarker=mapJson;
         
         });
+
+        this.searchSubScribe=this.mpService.searchList.subscribe((mapJson)=>{
+            //this.myMarker=<Marker[]>mapJson;
+       });
+
+        
     this.venueSubScribe=this.mpService.selectedVenue.subscribe((selectedVenue)=>{
       this.selectedVenue=selectedVenue;
       this.selectedVenue.zIndex=2;
