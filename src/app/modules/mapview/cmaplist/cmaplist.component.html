@@ -1,5 +1,5 @@
-
-<input type="text" id="searchBox" class="searchBox" [(ngModel)]="fitlerKey" (keyup)='onkeypress($event.target.value)' placeholder="Search">
+Location:<input type="text" id="searchBox" class="searchBox" [(ngModel)]="fitlerKey" (keyup)='onkeypress($event.target.value)' placeholder="Search">
+Radius:<input type="text" id="searchRadBox" class="searchRadBox" [(ngModel)]="fitlerKey" (keyup)='onkeypress($event.target.value)' placeholder="Search">
 <div class="venue-list">
     <ul>
             <li [ngClass]="{'highlight': selectedVenue == m}" *ngFor="let m of searchedList; let i = index" class="venue-text" (click)="markMe(m)"> 

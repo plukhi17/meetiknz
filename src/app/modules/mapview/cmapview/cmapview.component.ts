@@ -9,12 +9,12 @@ import { Subscription } from 'rxjs';
 })
 export class CmapviewComponent implements OnInit {
 
-  private myMarker: Marker[];
+  private myMarker: Marker[]=[];
   private zoom: number=12;
   private mapdata:any;
   private lonLat:number = 51.5194126;
   private lonLog:number = -0.10627840000006472;
-  private selectedVenue: any;
+  private selectedVenue: Marker;
   private venueSubScribe: Subscription;
   private venueListSubScribe: Subscription;
   private searchSubScribe: Subscription;
@@ -28,24 +28,32 @@ export class CmapviewComponent implements OnInit {
         });
 
         this.searchSubScribe=this.mpService.searchList.subscribe((mapJson)=>{
-            //this.myMarker=<Marker[]>mapJson;
+            //this.myMarker=<Marker[]><unknown>mapJson;
+            //this.myMarker=<Marker[]><unknown>mapJson;
+            this.myMarker=<Marker[]>mapJson;
+
        });
 
         
     this.venueSubScribe=this.mpService.selectedVenue.subscribe((selectedVenue)=>{
-      this.selectedVenue=selectedVenue;
-      this.selectedVenue.zIndex=2;
-      this.selectedVenue.isClicked=false;
-      
-      if(this.myMarker!=undefined){
-        this.myMarker.forEach((el,i)=>{
-          if(el.name==selectedVenue.name){
-            this.myMarker[i].isClicked=!this.myMarker[i].isClicked;
-            this.myMarker[i].zIndex=22;
-           
+      if(selectedVenue){
+        this.selectedVenue=<Marker>selectedVenue;
+       // this.selectedVenue.zIndex=2;
+        //this.selectedVenue.isClicked=false;
+        
+        if(this.myMarker!==undefined){
+          this.myMarker.forEach((el,i)=>{
+            if(el.name==this.selectedVenue.name){
+              this.myMarker[i].isClicked=!this.myMarker[i].isClicked;
+              this.myMarker[i].zIndex=22;
+             
+          }else{
+            this.myMarker[i].isClicked=false;
+          }
+          })
         }
-        })
       }
+   
      
     });
     

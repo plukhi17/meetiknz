@@ -17,5 +17,10 @@
 .searchBox{
     border-radius: 5px;
     line-height: 20px;
-    width: 100%;
+    width: 40%;
+}
+.searchRadBox{
+    border-radius: 5px;
+    line-height: 20px;
+    width: 20%;
 }
