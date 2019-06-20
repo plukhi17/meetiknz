@@ -1,0 +1,28 @@
+<p>
+  <agm-map [zoom]="zoom"  [latitude]="lonLat" [longitude]="lonLog">
+    <agm-marker 
+      *ngFor="let m of myMarker; let i = index"
+      [longitude]="m.longi"
+      [latitude]="m.lat"
+      (markerClick)="clickedMarker(m)"
+      [zIndex]="m.zIndex"
+      [visible]="m.visible"
+      [iconUrl] ="
+        {
+          url: m.isClicked ? './assets/images/blue_marker.png' : './assets/images/orange_marker.png',
+          scaledSize: {
+              width:  m.isClicked ? 40 :30,
+              height: m.isClicked ? 40 :30
+          }
+        }"
+        
+    >
+    <agm-info-window 
+      [isOpen]="isInfoWindowOpen(m.id)"
+      [latitude]="m.lat" 
+      [longitude]="m.longi">{{m.name}}</agm-info-window>
+    
+  </agm-marker>
+  </agm-map>
+
+</p>

@@ -1,0 +1,12 @@
+
+
+
+
+
+<div class="venue-list">
+    <ul>
+            <li [ngClass]="{'highlight': selectedVenue == m}" *ngFor="let m of venueList; let i = index" class="venue-text" (click)="markMe(m)"> 
+                {{m.name}}
+            </li>
+    </ul>
+</div>
