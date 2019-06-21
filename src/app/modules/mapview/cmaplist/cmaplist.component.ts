@@ -66,7 +66,7 @@ export class CmaplistComponent implements OnInit {
  calcCrow(lat11,lon11, lat22,lon22)
 {
   
-  var R = 6371; // km 
+  var R = 6371; // km of earth radius
 	var dLat = (lat22-lat11) * Math.PI / 180;
 	var dLon = (lon22-lon11) * Math.PI / 180;
 	var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
@@ -74,8 +74,8 @@ export class CmaplistComponent implements OnInit {
 		Math.sin(dLon/2) * Math.sin(dLon/2);
 	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   var d = R * c;
-  console.log('radius-',this.radiusKey);
-  console.log('distance-',d);
+  // console.log('radius-',this.radiusKey);
+  // console.log('distance-',d);
 	return (d<=this.radiusKey? true: false);
 }
 
