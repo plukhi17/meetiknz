@@ -12,8 +12,8 @@ export class CmapviewComponent implements OnInit {
   private myMarker: Marker[]=[];
   private zoom: number=12;
   private mapdata:any;
-  private lonLat:number = 51.5194126;
-  private lonLog:number = -0.10627840000006472;
+  private lonLat:number = 51.5073509;
+  private lonLog:number = -0.12775829999998223;
   private selectedVenue: Marker;
   private radiusFilter: number;
   private venueSubScribe: Subscription;

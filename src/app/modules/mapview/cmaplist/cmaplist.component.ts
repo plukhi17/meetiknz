@@ -16,8 +16,8 @@ export class CmaplistComponent implements OnInit {
   public filterKey: string;
   public searchRadBox:number;
   public radiusKey: number;
-  private lonLat:number = 51.5194126;
-  private lonLog:number = -0.10627840000006472;
+  private lonLat:number = 51.5073509;
+  private lonLog:number = -0.12775829999998223;
   
   constructor(private mapService: PMapService,private render: Renderer) { }
 
@@ -66,17 +66,17 @@ export class CmaplistComponent implements OnInit {
  calcCrow(lat11,lon11, lat22,lon22)
 {
   
-  var R = this.radiusKey;
-  var dLat = this.toRad(lat22-lat11);
-  var dLon = this.toRad(lon22-lon11);
-  var lat1 = this.toRad(lat11);
-  var lat2 = this.toRad(lat22);
-
-  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-  var d = R * c * 1000;
-  return (d<=R? true: false);
+  var R = 6371; // km 
+	var dLat = (lat22-lat11) * Math.PI / 180;
+	var dLon = (lon22-lon11) * Math.PI / 180;
+	var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+		Math.cos(lat11 * Math.PI / 180 ) * Math.cos(lat22 * Math.PI / 180 ) *
+		Math.sin(dLon/2) * Math.sin(dLon/2);
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var d = R * c;
+  console.log('radius-',this.radiusKey);
+  console.log('distance-',d);
+	return (d<=this.radiusKey? true: false);
 }
 
     // Converts numeric degrees to radians
